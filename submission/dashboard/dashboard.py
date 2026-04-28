@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+import os
 
 # Set page config untuk mengganti icon dan layout jadi wide
 st.set_page_config(page_title="Bike Sharing Dashboard", layout="wide")
@@ -18,8 +19,10 @@ def create_weather_rentals_df(df):
 
 # --- Load Data ---
 # Pastikan file hour.csv ada di folder yang sama
-all_df = pd.read_csv("hour.csv")
-all_df['dteday'] = pd.to_datetime(all_df['dteday'])
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, "hour.csv")
+
+all_df = pd.read_csv(file_path)
 
 # --- Sidebar ---
 with st.sidebar:
