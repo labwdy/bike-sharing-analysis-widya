@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -7,8 +8,9 @@ import streamlit as st
 st.set_page_config(page_title="Bike Sharing Analytics Dashboard", layout="wide")
 
 # 1. Load data yang sudah dibersihkan
-# Pastikan file all_data_clean.csv ada di folder yang sama
-day_df = pd.read_csv("all_data_clean.csv")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(current_dir, "all_data_clean.csv")
+day_df = pd.read_csv(file_path)
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 
 # --- 2. SIDEBAR (Pusat Kendali) ---
